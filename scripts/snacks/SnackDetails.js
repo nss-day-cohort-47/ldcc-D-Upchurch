@@ -1,5 +1,6 @@
-export const SnackDetails = (snackObject) => {
+export const SnackDetails = (snackObject, toppingArray) => {
 	console.log(snackObject)
+	console.log(toppingArray)
 	return `
 	<div class="col">
 		<div class="card shadow-sm" >
@@ -17,7 +18,7 @@ export const SnackDetails = (snackObject) => {
 					</div>
 					<div class="row row-cols-1">
 					//! This next line will be where we add in the expanded Toppings
-						<div class="col col-details">Toppings: ${snackObject.snackToppings.toppingId.name}</div>
+						<div class="col col-details"></div>
 					</div>
 				</div>
 			  	
