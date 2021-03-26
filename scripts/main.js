@@ -8,7 +8,7 @@ import { SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
-	getSnacks, getSingleSnack
+	getSnacks, getSingleSnack, getSingleSnackTopping
 } from "./data/apiManager.js";
 
 
@@ -39,7 +39,8 @@ applicationElement.addEventListener("click", event => {
 		//collect all the details into an object
 		const userObject = {
 			name: document.querySelector("input[name='registerName']").value,
-			email: document.querySelector("input[name='registerEmail']").value
+			email: document.querySelector("input[name='registerEmail']").value,
+			admin: false
 		}
 		registerUser(userObject)
 			.then(dbUserObj => {
@@ -64,7 +65,9 @@ applicationElement.addEventListener("click", event => {
 
 	if (event.target.id.startsWith("detailscake")) {
 		const snackId = event.target.id.split("__")[1];
+		getSingleSnackTopping()
 		getSingleSnack(snackId)
+		
 			.then(response => {
 				showDetails(response);
 			})
@@ -79,6 +82,7 @@ applicationElement.addEventListener("click", event => {
 })
 
 const showDetails = (snackObj) => {
+	console.log(snackObj, "what is object")
 	const listElement = document.querySelector("#mainContent");
 	listElement.innerHTML = SnackDetails(snackObj);
 }
