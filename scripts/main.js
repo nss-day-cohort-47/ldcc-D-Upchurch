@@ -65,14 +65,17 @@ applicationElement.addEventListener("click", event => {
 
 	if (event.target.id.startsWith("detailscake")) {
 		const snackId = event.target.id.split("__")[1];
-		getSingleSnackTopping()
+		
 		getSingleSnack(snackId)
 		
-			.then(response => {
-				showDetails(response);
-			})
-	}
-})
+			.then(snack => {
+				getSingleSnackTopping(snackId)
+			.then(toppingArray => {
+				console.log(toppingArray)
+				console.log(snack)
+				showDetails(snack, toppingArray);
+		}
+)})}});
 
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
@@ -81,10 +84,10 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
-const showDetails = (snackObj) => {
+const showDetails = (snackObj, toppingArray) => {
 	console.log(snackObj, "what is object")
 	const listElement = document.querySelector("#mainContent");
-	listElement.innerHTML = SnackDetails(snackObj);
+	listElement.innerHTML = SnackDetails(snackObj, toppingArray);
 }
 //end snack listeners
 
