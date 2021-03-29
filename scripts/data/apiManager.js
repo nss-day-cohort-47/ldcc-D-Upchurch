@@ -72,6 +72,28 @@ export const getSingleSnack = (snackId) => {
 	.then(response => response.json())
 }
 
+
+
+let toppingCollection = []
+
+export const useToppingCollection = () => {
+
+		let toppingCollectionCopy = [...toppingCollection]
+		return toppingCollectionCopy;
+		
+	}
+
+export const getAllToppings = () => {
+	return fetch(`${apiURL}/snackToppings?_expand=topping`)
+	.then(response => response.json)
+	// .then(parsedResponse => {
+	// 	 let toppingCollection = parsedResponse
+	// 	return toppingCollection;
+	}
+
+
+
+
 export const getSingleSnackTopping = (snackId) => {
 	return fetch(`${apiURL}/snackToppings?snackId=${snackId}&_expand=topping`)
 	.then(response => response.json())
