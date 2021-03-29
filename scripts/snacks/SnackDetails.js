@@ -1,6 +1,7 @@
 export const SnackDetails = (snackObject, toppingArray) => {
 	console.log(snackObject)
 	console.log(toppingArray)
+
 	return `
 	<div class="col">
 		<div class="card shadow-sm" >
@@ -17,8 +18,18 @@ export const SnackDetails = (snackObject, toppingArray) => {
 						<div class="col col-details">Season: ${snackObject.season.name}</div>
 					</div>
 					<div class="row row-cols-1">
-					//! This next line will be where we add in the expanded Toppings
-						<div class="col col-details"></div>
+					
+						<div class="col col-details"><p>${
+                            toppingArray.map(snackToppingObj => {
+                                const currentIndex = toppingArray.indexOf(snackToppingObj)
+                                const length = toppingArray.length - 1
+                                if( currentIndex < length ){
+                                    return `${snackToppingObj.topping.name}, `
+                                } else {
+                                    return `${snackToppingObj.topping.name}`
+                                }
+                            }).join("")
+                        }</p></div>
 					</div>
 				</div>
 			  	
@@ -34,3 +45,12 @@ export const SnackDetails = (snackObject, toppingArray) => {
 	</div>
 	`
 }
+
+
+
+
+	// let toppingHTML = ""
+	// toppingArray.forEach(toppingObj => {
+	// 	toppingHTML += `<p>${toppingObj.topping.name} </p>`
+	// })
+	// console.log(toppingHTML)
