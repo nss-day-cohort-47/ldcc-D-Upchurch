@@ -8,8 +8,10 @@ import { SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
-	getSnacks, getSingleSnack, getSingleSnackTopping
+	getSnacks, getSingleSnack, getSingleSnackTopping, useSnackCollection,
 } from "./data/apiManager.js";
+import { toppingDropdown } from "./nav/SingleToppings.js"
+
 
 
 
@@ -60,22 +62,17 @@ applicationElement.addEventListener("click", event => {
 // end login register listeners
 
 // snack listeners
-applicationElement.addEventListener("click", event => {
+applicationElement.addEventListener("click", (event) => {
 	event.preventDefault();
-
+  
 	if (event.target.id.startsWith("detailscake")) {
-		const snackId = event.target.id.split("__")[1];
-		
-		getSingleSnack(snackId)
-		
-			.then(snack => {
-				getSingleSnackTopping(snackId)
-			.then(toppingArray => {
-				console.log(toppingArray)
-				console.log(snack)
-				showDetails(snack, toppingArray);
-		}
-)})}});
+	  const snackId = event.target.id.split("__")[1];
+	  getSingleSnack(snackId).then((response) => {
+		console.log(response);
+		showDetails(response);
+	  });
+	}
+  });
 
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
@@ -84,10 +81,33 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
-const showDetails = (snackObj, toppingArray) => {
+applicationElement.addEventListener("change", (event) => {
+
+	const toppingValue = event.target.value;
+  //   console.log(toppingValue)
+	const snacks = useSnackCollection();
+  //   console.log("snacks", snacks)
+	let filteredSnacks = [];
+	getSingleSnackTopping().then((snackTopping) => {
+	  // console.log(snackTopping);
+	  snackTopping.forEach(item => {
+		  // console.log(item, item.toppingId, item.snackId, toppingValue)
+		  if(item.toppingId === parseInt(toppingValue)) {
+			  let snack = item.snackId
+			  filteredSnacks.push(snacks[snack - 1])
+			  // console.log("filtered snacks by topping",filteredSnacks)
+			  const listElement = document.querySelector("#mainContent");
+			  listElement.innerHTML = SnackList(filteredSnacks);
+		  }
+	  })
+	  
+	  });
+	});
+
+const showDetails = (snackObj) => {
 	console.log(snackObj, "what is object")
 	const listElement = document.querySelector("#mainContent");
-	listElement.innerHTML = SnackDetails(snackObj, toppingArray);
+	listElement.innerHTML = SnackDetails(snackObj);
 }
 //end snack listeners
 
@@ -129,6 +149,7 @@ const startLDSnacks = () => {
 	applicationElement.innerHTML += `<div id="mainContent"></div>`;
 	showSnackList();
 	showFooter();
+	toppingDropdown();
 
 }
 

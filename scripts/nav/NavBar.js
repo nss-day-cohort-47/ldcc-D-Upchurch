@@ -1,25 +1,6 @@
 import { getLoggedInUser, useToppingCollection, getAllToppings} from "../data/apiManager.js"
 
 
-const toppingDropdown = () => {
-	getAllToppings().then(() => {
-
-		let toppingArrayList = useToppingCollection()
-		// .then(() => {
-	
-			console.log(toppingArrayList, "topping array")
-			let toppingList = ""
-				for(snackToppingObj of toppingArrayList) {
-					toppingList += `<option value="${snackToppingObj.topping.name}">${snackToppingObj.topping.name}</option>`
-					console.log(toppingList, "topping list")
-				}
-				return toppingList;
-	})
-}
-
-
-
-
 export const NavBar = () => {
 	//only show navItems and addTypeButton if user is logged in
 	const navItems = getLoggedInUser().id ? `
@@ -32,9 +13,9 @@ export const NavBar = () => {
 			<button class="btn btn-info" type="button" id="allSnacks">All Snacks</button>
 		</li>
 		<li class="nav-item ms-1">
-			<select class="form-select form-select btn-info" aria-label="Select A Topping">
+			<select id="toppingSelect" class="form-select form-select btn-info" aria-label="Select A Topping">
 				<option selected>Select A Topping</option>
-				${toppingDropdown()}
+				
 			</select>
 		</li>
 		<li class="nav-item ms-1">
