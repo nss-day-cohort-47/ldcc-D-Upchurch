@@ -88,7 +88,8 @@ applicationElement.addEventListener("change", (event) => {
 	const snacks = useSnackCollection();
   //   console.log("snacks", snacks)
 	let filteredSnacks = [];
-	getSingleSnackTopping().then((snackTopping) => {
+	getSingleSnackTopping()
+	.then(snackTopping => {
 	  // console.log(snackTopping);
 	  snackTopping.forEach(item => {
 		  // console.log(item, item.toppingId, item.snackId, toppingValue)

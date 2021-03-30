@@ -1,6 +1,6 @@
 export const SnackDetails = (snackObject) => {
 	console.log(snackObject)
-	// ${snackObject.toppings.map(topping => topping.topping.name).join(", ")}
+	
 	console.log(snackObject.toppings, "test")
 	return `
 	<div class="col">
@@ -20,7 +20,7 @@ export const SnackDetails = (snackObject) => {
 					<div class="row row-cols-1">
 					
 					<div class="col col-details">
-					<p>Topping: </p>
+					<p>Topping: ${snackObject.toppings.map(topping => topping.topping.name).join(", ")} </p>
 					</div>
 					</div>
 				</div>
