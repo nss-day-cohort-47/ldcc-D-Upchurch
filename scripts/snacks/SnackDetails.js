@@ -1,7 +1,7 @@
-export const SnackDetails = (snackObject, toppingArray) => {
+export const SnackDetails = (snackObject) => {
 	console.log(snackObject)
-	console.log(toppingArray)
-
+	// ${snackObject.toppings.map(topping => topping.topping.name).join(", ")}
+	console.log(snackObject.toppings, "test")
 	return `
 	<div class="col">
 		<div class="card shadow-sm" >
@@ -19,17 +19,9 @@ export const SnackDetails = (snackObject, toppingArray) => {
 					</div>
 					<div class="row row-cols-1">
 					
-						<div class="col col-details"><p>${
-                            toppingArray.map(snackToppingObj => {
-                                const currentIndex = toppingArray.indexOf(snackToppingObj)
-                                const length = toppingArray.length - 1
-                                if( currentIndex < length ){
-                                    return `${snackToppingObj.topping.name}, `
-                                } else {
-                                    return `${snackToppingObj.topping.name}`
-                                }
-                            }).join("")
-                        }</p></div>
+					<div class="col col-details">
+					<p>Topping: </p>
+					</div>
 					</div>
 				</div>
 			  	
