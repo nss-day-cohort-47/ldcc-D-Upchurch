@@ -81,6 +81,13 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id === "addTypeButton") {
+		addNewType();
+	}
+})
+
 applicationElement.addEventListener("change", (event) => {
 
 	const toppingValue = event.target.value;

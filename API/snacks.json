@@ -131,6 +131,18 @@
       "seasonId": 1,
       "description": "Strawberry-flavored cake with layered creme, coated in white frosting with light blue stripes and purple candy glitter.",
       "toppings": "White icing with light blue stripes and purple glitter."
+    },
+    {
+      "name": "Oatmeal Cream Pie Cereal",
+      "snackImg": "https://guiltyeats.com/files/2020/09/Kelloggs-Little-Debbie-Oatmeal-Cream-Pies-Cereal.jpg",
+      "count": 1,
+      "typeId": 7,
+      "shapeId": 4,
+      "inFlavorId": 2,
+      "seasonId": 1,
+      "description": "Minature Oatmeal Cookie Cereal",
+      "toppings": "White Icing",
+      "id": 12
     }
   ],
   "toppings": [
@@ -397,6 +409,13 @@
     {
       "id": 5,
       "name": "Cordial"
+    },
+    {
+      "id": 6
+    },
+    {
+      "name": "Cereal",
+      "id": 7
     }
   ],
   "shapes": [
